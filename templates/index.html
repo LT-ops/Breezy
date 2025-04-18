@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web App</title>
+    <!-- Link to the CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <h1>Welcome to My Simple Web App</h1>
+
+    <p>
+        This is a basic example demonstrating a web form using Flask.
+        Enter some text below and click submit.
+    </p>
+
+    <!-- The form sends data back to the same URL ('/') using the POST method -->
+    <form method="POST" action="/">
+        <label for="user_text">Enter some text:</label><br>
+        <!--
+            The 'name' attribute ("user_text") is used by Flask (request.form)
+            to identify this input field's data.
+            The 'value' attribute is set to repopulate the field after submission.
+        -->
+        <input type="text" id="user_text" name="user_text" value="{{ current_input }}">
+        <button type="submit">Submit</button>
+    </form>
+
+    <!-- Display the result if the 'result' variable has content -->
+    {% if result %}
+    <div class="result">
+        <p>{{ result }}</p>
+    </div>
+    {% endif %}
+
+</body>
+</html>
